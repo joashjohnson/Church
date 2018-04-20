@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet"> </head>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-family: 'Arimo', sans-serif;
+    }
+    .Currenttime {
+        font-size: 2000%;
+        line-height: 2;
+    }
+</style>
+
+<head>
+    <title>Countdown</title>
+        <script type="text/javascript">
+        // Gets current time
+        function GetClock() {
+            var d = new Date();
+            var nhour = d.getHours()
+                , nmin = d.getMinutes()
+                , nsec = d.getSeconds()
+                , ap;
+            if (nmin <= 9) nmin = "0" + nmin;
+            if (nsec <= 9) nsec = "0" + nsec;
+            document.getElementById('clockbox').innerHTML = "" + nhour + ":" + nmin + ":" + nsec + "";
+        }
+        // on loading of the gets current time
+        window.onload = function () {
+            GetClock();
+            setInterval(GetClock, 1000);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="clockbox" class="Currenttime" style="text-align:center;"></div>
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet"> </head>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-family: 'Arimo', sans-serif;
+    }
+
+    .fulltime {
+         font-size: 1000%;
+    }
+
+    .Currenttime {
+        font-size: 3000%;
+        line-height: 0.5;
+    }
+</style>
+
+<head>
+    <title>Countdown</title>
+    <script type="text/javascript">
+        //different areas
+        var Setup = 1800;
+        var SoundCheck = 1800;
+        var Team = 3600;
+        var Doors = 1500;
+        var PreRoll = 300;
+        var Worship = 1500;
+        var mcslot = 600;
+        var preach = 1800;
+        var appeal = 300;
+        var kickout = 300;
+        var seconds = 1800; // default;
+        var i = 1; //used to change between sections
+        var test = 0;
+        var test2 = 0;
+        var color = '';
+
+        //no negative vals before number countdowns
+        function floor(x) {
+            return x | 0;
+        }
+
+        function pad(n) {
+            if (n < 0) {
+                n = -n;
+            }
+            if (n < 10) {
+                return '0' + n.toString();
+            }
+            return n.toString();
+        }
+        //actual countdown
+        function secondPassed() {
+            var minutes = pad(floor(seconds / 60));
+            if (seconds < 0) {
+                minutes = '-' + minutes;
+            }
+            var remainingSeconds = pad(seconds % 60);
+            document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+            test = minutes;
+            test2 = remainingSeconds;
+            if (seconds > 0) {
+                seconds--;
+            }
+            else {
+                //if the countdown is less that 0 then turns the color red and keeps counting down
+                document.getElementById("countdown").style.color = "red";
+                color = "Red";
+                seconds--;
+            }
+        }
+        //what runs the count down
+        var countdownTimer = setInterval('secondPassed()', 1000);
+        //stips the clock
+        function myStopFunction() {
+            clearInterval(countdownTimer);
+        }
+        //starts the clock
+        function Start() {
+            var countdownTimer = setInterval('secondPassed()', 1000);
+        }
+        //resets the clock
+        function restart() {
+            i = i - 1;
+            myFunction();
+        }
+
+
+
+        //changes content and countdown amount each time. Changing the values above will automaticly change the ones below.
+        function myFunction() {
+
+            secondPassed();
+            if (i == 1) {
+                document.getElementById("next").innerHTML = "SOUND CHECK"
+                document.getElementById("Text").innerHTML = "SETUP";
+                document.getElementById("countdown").style.color = "white";
+                //Deducts time if less than zero from set time. Same code used for all Sections
+                if (test  < 0 || color == "Red") {
+
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = Setup + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    //If not less than zero then goes to default time
+                    seconds = Setup;
+                    i++;
+                }
+            }
+            else if (i == 2) {
+                document.getElementById("Text").innerHTML = "SOUND CHECK";
+                document.getElementById("next").innerHTML = "TEAM PREP";
+                document.getElementById("countdown").style.color = "white";
+                if (test  < 0 || color == "Red") {
+
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = SoundCheck + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = SoundCheck;
+                    i++;
+                }
+            }
+            else if (i == 3) {
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("Text").innerHTML = "TEAM PREP";
+                document.getElementById("next").innerHTML = "DOORS OPEN";
+                if (test  < 0 || color == "Red") {
+
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = Team + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = Team;
+                    i++;
+                }
+            }
+            else if (i == 4) {
+                document.getElementById("Text").innerHTML = "DOORS OPEN";
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("next").innerHTML = "PRE ROLL";
+                if (test  < 0 || color == "Red") {
+
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = Doors + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = Doors;
+                    i++;
+                }
+            }
+            else if (i == 5) {
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("Text").innerHTML = "PRE ROLL";
+                document.getElementById("next").innerHTML = "PRAISE & WORSHIP";
+                if (test  < 0 || color == "Red") {
+
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = PreRoll + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = PreRoll;
+                    i++;
+                }
+            }
+            else if (i == 6) {
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("Text").innerHTML = "PRAISE & WORSHIP";
+                document.getElementById("next").innerHTML = "MC SLOT";
+
+
+                if (test  < 0 || color == "Red") {
+
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = Worship + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+
+
+                    seconds = Worship;
+                    i++;
+                }
+            }
+
+            else if (i == 7) {
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("Text").innerHTML = "MC SLOT";
+                document.getElementById("next").innerHTML = "WORSHIP SET 2";
+                if (test  < 0 || color == "Red") {
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = mcslot + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = mcslot;
+                    i++;
+                }
+            }
+            else if (i == 8) {
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("Text").innerHTML = "WORSHIP SET 2";
+                document.getElementById("next").innerHTML = "APPEAL";
+                if (test  < 0 || color == "Red") {
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = preach + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = preach;
+                    i++;
+                }
+            }
+            else if (i == 9) {
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("Text").innerHTML = "APPEAL";
+                document.getElementById("next").innerHTML = "KICKOUT";
+                if (test  < 0 || color == "Red") {
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = appeal + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = appeal;
+                    i++;
+                }
+            }
+            else if (i == 10) {
+                document.getElementById("countdown").style.color = "white";
+                document.getElementById("Text").innerHTML = "KICKOUT";
+                document.getElementById("next").innerHTML = "Service End";
+                if (test  < 0 || color == "Red") {
+                    var j = test * 60;
+                    var j = j - test2;
+                    var k = kickout + j;
+                    seconds = k;
+                    i++;
+                }
+                else {
+                    seconds = kickout;
+                    i++;
+                }
+            }
+            else if (i == 11) {
+                document.getElementById("button").innerHTML = "Start"
+                document.getElementById("Text").innerHTML = "Programme Has Not Been Started";
+                seconds = seconds;
+                i = 1;
+            }
+        }
+        //changes to the next programme on double click
+        document.addEventListener("dblclick", myFunction);
+    </script>
+</head>
+
+<body>
+    <!-- Current Section-->
+    <p id="Text" style="font-size:5vw;font-weight:600;text-align:center;">Double click anywhere to begin and navigate </p>
+    <p align="center"> <span id="countdown" class="CurrentTime">  </span> </p>
+    <!-- Next Section-->
+    <br/>
+    <p> <span style="font-size:30px;">Next : </span><span id="next" style="font-size:80px;">SETUP</span> </p>
+    <br/>
+    <!--  Buttons to Control Timer -->
+ <button onclick="restart()" style="line-height: 0">Restart</button>
+    <button id="pause" onclick="myStopFunction()" style="line-height: 0.2">Pause</button>
+    <button id="start" onclick="Start()" style="line-height: 0.1">start</button>
+    <!--  Basic Clock -->
+    <script type="text/javascript">
+        // Gets current time
+        function GetClock() {
+            var d = new Date();
+            var nhour = d.getHours()
+                , nmin = d.getMinutes()
+                , nsec = d.getSeconds()
+                , ap;
+            if (nmin <= 9) nmin = "0" + nmin;
+            if (nsec <= 9) nsec = "0" + nsec;
+            document.getElementById('clockbox').innerHTML = "" + nhour + ":" + nmin + ":" + nsec + "";
+        }
+        // on loading of the gets current time
+        window.onload = function () {
+            GetClock();
+            setInterval(GetClock, 1000);
+        }
+    </script>
+    <!-- Displays Clock -->
+    <div id="clockbox" class="fulltime" style="text-align:center;"></div>
+</body>
+
+</html>
